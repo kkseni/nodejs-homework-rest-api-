@@ -1,6 +1,10 @@
 const express = require("express");
 
-const { validation, paramValidation } = require("../../middlewares");
+const {
+  validation,
+  paramValidation,
+  authMiddleware,
+} = require("../../middlewares");
 const {
   contactSchema,
   schemaId,
@@ -14,11 +18,16 @@ const validateMiddlewareId = paramValidation(schemaId);
 
 const router = express.Router();
 
-router.get("/", contactController.getAll);
+router.get("/", authMiddleware, contactController.getAll);
 
 router.get("/:contactId", validateMiddlewareId, contactController.getOneById);
 
-router.post("/", validateMiddleware, contactController.addContact);
+router.post(
+  "/",
+  authMiddleware,
+  validateMiddleware,
+  contactController.addContact
+);
 
 router.delete(
   "/:contactId",

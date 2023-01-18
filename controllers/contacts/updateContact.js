@@ -1,5 +1,5 @@
 const createError = require("http-errors");
-const { Contact } = require("../../models/contact");
+const { Contact } = require("../../models");
 
 const updateContact = async (req, res, next) => {
   try {
@@ -21,4 +21,5 @@ const updateContact = async (req, res, next) => {
     next(error);
   }
 };
+
 module.exports = updateContact;
