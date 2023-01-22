@@ -1,6 +1,7 @@
 const createError = require("http-errors");
 const bcrypt = require("bcryptjs");
 const { User } = require("../../models");
+const gravatar = require("gravatar");
 
 const singup = async (req, res, next) => {
   try {
@@ -10,7 +11,12 @@ const singup = async (req, res, next) => {
       throw createError(409, `${email} in use. Choose another`);
     }
     const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(8));
-    const result = await User.create({ email, password: hashPassword });
+    const avatarURL = gravatar.url(email);
+    const result = await User.create({
+      email,
+      password: hashPassword,
+      avatarURL,
+    });
     res.json({
       status: "success",
       code: 201,
