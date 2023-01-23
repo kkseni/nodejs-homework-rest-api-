@@ -9,6 +9,7 @@
     "lint:fix": "eslint --fix **/*.js"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.33.0",
@@ -23,6 +24,7 @@
     "mongoose": "^6.8.2",
     "morgan": "^1.10.0",
     "nanoid": "^3.3.4",
+    "nodemailer": "^6.9.0",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
